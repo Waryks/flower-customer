@@ -34,6 +34,9 @@ public class Customer {
     @Column(name = "password", nullable = false)
     private String password;
 
+    @Column(name = "roles", length = 100)
+    private String roles;
+
     @OneToMany(mappedBy = "customer")
     private Set<Purchase> purchases = new LinkedHashSet<>();
 }

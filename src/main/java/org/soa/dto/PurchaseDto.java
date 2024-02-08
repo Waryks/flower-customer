@@ -6,6 +6,7 @@ import lombok.Setter;
 import java.io.Serial;
 import java.io.Serializable;
 import java.time.Instant;
+import java.time.OffsetDateTime;
 
 /**
  * DTO for {@link org.soa.entity.Purchase}
@@ -19,5 +20,6 @@ public class PurchaseDto implements Serializable {
     private Long flowerId;
     private Long customerId;
     private Integer quantity;
-    private Instant purchaseDate;
+    private OffsetDateTime purchaseDate;
+    private String roles;
 }

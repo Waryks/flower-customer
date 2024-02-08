@@ -21,4 +21,8 @@ public interface ShopCommunicationService {
     @PUT
     @Path("/flowerstocks/{flowerId}/{quantity}")
     public Response changeFlowerDetails(@PathParam("flowerId") Long flowerId, @PathParam("quantity") Integer quantity);
+
+    @PUT
+    @Path("/flowerstocks/refund/{flowerId}/{quantity}")
+    public Response refundFlowerDetails(@PathParam("flowerId") Long flowerId, @PathParam("quantity") Integer quantity);
 }

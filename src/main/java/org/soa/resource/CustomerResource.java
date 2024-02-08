@@ -1,13 +1,12 @@
 package org.soa.resource;
 
+import jakarta.annotation.security.RolesAllowed;
 import jakarta.enterprise.context.ApplicationScoped;
 import jakarta.inject.Inject;
-import jakarta.ws.rs.Consumes;
-import jakarta.ws.rs.POST;
-import jakarta.ws.rs.Path;
-import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
+import org.eclipse.microprofile.jwt.JsonWebToken;
 import org.soa.dto.CustomerDto;
 import org.soa.service.CustomerService;
 
@@ -27,9 +26,15 @@ public class CustomerResource {
     }
 
     @POST
+    @RolesAllowed("admin")
+    @Path("/{customerId}/cashier")
+    public Response createCashier(@PathParam("customerId") Long customerId) {
+        return Response.created(URI.create(customerService.createCashier(customerId).toString())).build();
+    }
+
+    @POST
     @Path("/login")
     public Response login(CustomerDto customerDto){
-        customerService.findCustomer(customerDto);
-        return Response.ok("Successful!").build();
+        return Response.ok(customerService.findCustomer(customerDto)).build();
     }
 }
